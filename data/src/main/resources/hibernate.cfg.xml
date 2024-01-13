@@ -1,0 +1,22 @@
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+
+    <session-factory>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/project</property>
+        <property name="hibernate.connection.username">user</property>
+        <property name="hibernate.connection.password">user</property>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+
+        <!-- hibernate.properties -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+        <property name="hibernate.show_sql">true</property>
+        <!--<property name="hibernate.hbm2ddl.auto">update</property>-->
+
+        <mapping class="ivan.pojo.Account"/>
+        <mapping class="ivan.pojo.Person"/>
+        <mapping class="ivan.pojo.Product"/>
+        <mapping class="ivan.pojo.Security"/>
+
+
+    </session-factory>
+
+</hibernate-configuration>
