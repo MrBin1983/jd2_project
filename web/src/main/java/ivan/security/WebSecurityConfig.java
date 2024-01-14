@@ -1,8 +1,7 @@
 package ivan.security;
 
 
-import ivan.DataConfiguration;
-import ivan.ServiceConfiguration;
+import ivan.web.WebConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -16,7 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @Configuration
-@Import({DataConfiguration.class, ServiceConfiguration.class})
+@Import(WebConfiguration.class)
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig {
@@ -35,7 +34,7 @@ public class WebSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/home", "/static/**", "/WEB-INF/jsp/**").permitAll()
+                        .requestMatchers("/static/**", "/WEB-INF/jsp/**", "/", "/home**", "/index**").permitAll()
                         .requestMatchers("/login", "/api/**").anonymous()
                         .requestMatchers("/logout").authenticated()
                         .requestMatchers("/add**").hasRole("ADMIN")

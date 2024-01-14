@@ -20,13 +20,17 @@ public class Security {
     @Column(name = "PASSWORD")
     private String password;
 
+    @Column(name = "ROLE")
+    private String role;
+
     public Security() {
     }
 
-    public Security(String id, String login, String password) {
+    public Security(String id, String login, String password, String role) {
         this.id = id;
         this.login = login;
         this.password = password;
+        this.role = role;
     }
 
     public String getId() {
@@ -53,6 +57,10 @@ public class Security {
         this.password = password;
     }
 
+    public String getRole() {return role;}
+
+    public void setRole(String role) {this.role = role;}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -62,7 +70,8 @@ public class Security {
 
         if (!Objects.equals(id, security.id)) return false;
         if (!Objects.equals(login, security.login)) return false;
-        return  (!Objects.equals(password, security.password));
+        if (!Objects.equals(password, security.password)) return false;
+        return  (!Objects.equals(role, security.role));
     }
 
     @Override
@@ -70,6 +79,7 @@ public class Security {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
         return result;
     }
 }

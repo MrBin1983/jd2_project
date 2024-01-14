@@ -22,9 +22,6 @@ public class Person {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "DATE_OF_BIRTH")
-    private Date dateOfBirth;
-
     @OneToOne
     @JoinColumn(name = "SECURITY_ID")
     private Security security;
@@ -36,11 +33,10 @@ public class Person {
     public Person() {
     }
 
-    public Person(String id, String firstName, String lastName, Date dateOfBirth, Security security, List<Account> account) {
+    public Person(String id, String firstName, String lastName, Security security, List<Account> account) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
         this.security = security;
         this.account = account;
     }
@@ -69,14 +65,6 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
     public Security getSecurity() {return security;}
 
     public void setSecurity(Security security) {this.security = security;}
@@ -94,8 +82,7 @@ public class Person {
 
         if (!Objects.equals(id, person.id)) return false;
         if (!Objects.equals(firstName, person.firstName)) return false;
-        if (!Objects.equals(lastName, person.lastName)) return false;
-        return Objects.equals(dateOfBirth, person.dateOfBirth);
+        return Objects.equals(lastName, person.lastName);
     }
 
     @Override
@@ -103,7 +90,6 @@ public class Person {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
         return result;
     }
 }

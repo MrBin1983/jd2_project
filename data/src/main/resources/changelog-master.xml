@@ -11,6 +11,7 @@
             SECURITY_ID VARCHAR(45) NOT NULL,
             LOGIN VARCHAR(45) NOT NULL,
             PASSWORD VARCHAR(45) NOT NULL,
+            ROLE VARCHAR(45) NOT NULL,
             PRIMARY KEY (SECURITY_ID)
             );
         </sql>
@@ -48,7 +49,6 @@
             PERSON_ID VARCHAR(45) NOT NULL,
             FIRST_NAME VARCHAR(45) NOT NULL,
             LAST_NAME VARCHAR(45) NOT NULL,
-            DATE_OF_BIRTH VARCHAR(45) NOT NULL,
             SECURITY_ID VARCHAR(255) DEFAULT NULL,
             ACCOUNT_ID VARCHAR(255) DEFAULT NULL,
             KEY FK_T_SECURITY_ID (SECURITY_ID),
@@ -59,6 +59,12 @@
             REFERENCES T_ACCOUNT (ACCOUNT_ID),
             PRIMARY KEY (PERSON_ID)
             );
+        </sql>
+    </changeSet>
+
+    <changeSet id="5" author="ivan">
+        <sql>
+            INSERT INTO T_SECURITY VALUES ('aaaabbbbccccddddeeeeffff00000001', 'admin', 'admin', 'ROLE_ADMIN');
         </sql>
     </changeSet>
 
